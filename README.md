@@ -28,7 +28,7 @@ g(t) is a universal approximator to u(t).
 
 For the second order method, the PINN is used to solve an equation of the form
 
-![equation](https://latex.codecogs.com/gif.latex?u%27%27%28y%2C%29%20%3D%20f%28y%29)
+![equation](https://latex.codecogs.com/gif.latex?u%27%27%28y%29%20%3D%20f%28y%29)
 
 The PINN learns the form of u(t) without needing any knowledge of the output except for the initial condition.
 
