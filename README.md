@@ -30,6 +30,17 @@ For the second order method, the PINN is used to solve an equation of the form
 
 ![equation](https://latex.codecogs.com/gif.latex?u%27%27%28y%29%20%3D%20f%28y%29)
 
+With
+
+
+![equation](https://latex.codecogs.com/gif.latex?u%27%280%29%20%3D%20u%27_%7B0%7D)
+
+and
+
+
+![equation](https://latex.codecogs.com/gif.latex?u%280%29%20%3D%20u_%7B0%7D)
+
+
 The PINN learns the form of u(t) without needing any knowledge of the output except for the initial condition.
 
 Please feel free to use the code.
