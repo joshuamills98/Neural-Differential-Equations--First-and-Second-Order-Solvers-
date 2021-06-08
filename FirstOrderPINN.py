@@ -86,4 +86,5 @@ if __name__ == '__main__':
     ax[1].set_title('After Training')
     ax[1].legend()
     print('Loss After {} Epochs = {:.2f}. Total Run-Time = {:.2f}'.format(n_epochs, ode.evaluate(t,-t**2+np.sin(t)+2),end-start))
-    plt.savefig('FirstOrderPINNExample.jpg', dpi = 300, transparent = True)
+    plt.tight_layout()
+    plt.savefig('FirstOrderPINNExample.png', dpi = 300, transparent = True)
