@@ -1,5 +1,5 @@
 # Neural-Differential-Equations--First-and-Second-Order-Solvers-
-In this project I experiment with Physics Informed Neural Networks to solve first and second order ODEs, this code was developed to assist in my Master's thesis on physics-informed neural networks implemented engineering development platforms.
+In this project I experiment with Physics-Informed Neural Networks (PINNs) to solve first and second order ODEs, this code was developed to assist in my Master's thesis on physics-informed neural networks implemented engineering development platforms.
 For the first order method the goal is to solve the equation
 
 
@@ -24,8 +24,13 @@ Where:
 ![equation](https://latex.codecogs.com/gif.latex?g%28t%29%20%3D%20u_%7B0%7D%20&plus;%20tNN%28t%29)
 
 
-g(t) is a universal approximator to u(t)
+g(t) is a universal approximator to u(t).
 
+For the second order method, the PINN is used to solve an equation of the form
+
+![equation](https://latex.codecogs.com/gif.latex?u%27%27%28y%2C%29%20%3D%20f%28y%29)
+
+The PINN learns the form of u(t) without needing any knowledge of the output except for the initial condition.
 
 Please feel free to use the code.
 I was heavily inspired by https://www.youtube.com/watch?v=hKHl68Fdpq4&ab_channel=ParallelComputingandScientificMachineLearning which presents a great demonstration of the theory behind PINNs!
