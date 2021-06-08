@@ -4,11 +4,8 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 import matplotlib as matplotlib
 import time 
-from tensorflow.keras.layers import RNN, Layer, Dense
-from tensorflow.keras import Sequential
-from tensorflow.keras.optimizers import RMSprop
-from tensorflow import float32, concat, convert_to_tensor, linalg
-from tensorflow.keras.callbacks import EarlyStopping
+from keras.optimizers import Adam
+from tensorflow.keras.layers import Layer, Dense
 from tensorflow.keras import Model
 tf.keras.backend.set_floatx('float32')
 plt.style.use('fivethirtyeight')
@@ -17,15 +14,14 @@ plt.style.use('fivethirtyeight')
 class Block(Layer):
     def __init__(self):
         super(Block, self).__init__()
-        self.linear_1 = Dense(32,activation = 'tanh')
-        self.linear_2 = Dense(32,activation = 'tanh')
-        self.linear_3 = Dense(32,activation = 'tanh')
+        self.linear_1 = Dense(5,activation = 'tanh')
+        self.linear_2 = Dense(5,activation = 'tanh')
+
         self.linear_4 = Dense(1)
 
     def call(self,inputs, training=True):
         x = self.linear_1(inputs)
-        x = self.linear_2(x)
-        x = self.linear_3(x)
+        x = self.linear_2(inputs)
         return self.linear_4(x)
 
 class NeuralModel(Model):
@@ -55,8 +51,9 @@ class ODESolver(NeuralModel): #In this class we put all the data particular to o
         self.f = self.ODEFunction(t)
 
     def solve(self, epochs =400, verbose = 1):
-        self.compile(optimizer = 'Adam', loss ='mean_squared_error')
-        self.fit(self.t,self.f,batch_size=round(len(self.t)/10),epochs=400,verbose=verbose)
+        opt = Adam(learning_rate=0.01)
+        self.compile(optimizer = opt, loss ='mean_squared_error')
+        self.fit(self.t,self.f,epochs=400,verbose=verbose )
 
     def ODEFunction(self,t): #Define the function f(x) for the solver to output dy/dx = f(x)
         return(-2*t + np.cos(t))    
@@ -64,15 +61,15 @@ class ODESolver(NeuralModel): #In this class we put all the data particular to o
 
 if __name__ == '__main__':
     u_0 = 2
-    t = np.linspace(0.1,2,1000)
-    n_epochs = 400
+    t = np.linspace(0,2,200)
+    n_epochs = 1000
     ode = ODESolver(t,u_0=u_0)
     ode.compile(optimizer = 'Adam', loss ='mean_squared_error')
-    fig,ax = plt.subplots(1,2, figsize=(12,6))
+    fig,ax = plt.subplots(1,2, figsize=(15,8))
     ax[0].plot(t,-t**2+np.sin(t)+2,c='b', label = 'True Result')
     ax[0].plot(t,ode.predict(t),c='r',linestyle = '--',label = 'Predicted Result')
-    ax[0].set_xlabel('x')
-    ax[0].set_ylabel('y')
+    ax[0].set_xlabel('x', fontsize = 24)
+    ax[0].set_ylabel('y', fontsize = 24)
     ax[0].legend()
     ax[0].set_title('Before Training')
     print('Before Training Loss = {:.4f}'.format(ode.evaluate(t,-t**2+np.sin(t)+2)))
@@ -84,9 +81,9 @@ if __name__ == '__main__':
     ax[1].plot(t,-t**2+np.sin(t)+2,c='b', label = 'True Result')
     ax[1].plot(t,ode.predict(t),c='r',linestyle = '--',label = 'Predicted Result')
     ax[1].legend()
-    ax[1].set_xlabel('x')
-    ax[1].set_ylabel('y')
+    ax[1].set_xlabel('x', fontsize = 24)
+    ax[1].set_ylabel('y', fontsize = 24)
     ax[1].set_title('After Training')
     ax[1].legend()
     print('Loss After {} Epochs = {:.2f}. Total Run-Time = {:.2f}'.format(n_epochs, ode.evaluate(t,-t**2+np.sin(t)+2),end-start))
-    plt.savefig('FirstOrderPINNExample.jpg')
+    plt.savefig('FirstOrderPINNExample.jpg', dpi = 300, transparent = True)
