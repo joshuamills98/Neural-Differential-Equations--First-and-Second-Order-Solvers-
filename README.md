@@ -49,6 +49,6 @@ Attached shows the solution determined by the first-order ODE solver to the equa
 
 ![equation](https://latex.codecogs.com/gif.latex?u%27%28t%29%20%3D%20-%5Csin%7B%28t%7D%29&plus;t)
 
-![image](\FirstOrderPINNExample.jpg)
+![image](/FirstOrderPINNExample.jpg)
 
 I was heavily inspired by https://www.youtube.com/watch?v=hKHl68Fdpq4&ab_channel=ParallelComputingandScientificMachineLearning which presents a great demonstration of the theory behind PINNs!
