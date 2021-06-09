@@ -45,7 +45,7 @@ and
 ![equation](https://latex.codecogs.com/gif.latex?u%280%29%20%3D%20u_%7B0%7D)
 
 
-The PINN learns the form of u(t) without needing any knowledge of the output except for the initial condition.
+The PINN learns the form of u(t) without needing any knowledge of the output except for the initial condition. The method is heavily inspired by Raissi et al. (2017) and its work on PINNs [[1]](#1).
 
 Please feel free to use the code.
 
@@ -57,3 +57,9 @@ Attached shows the solution determined by the first-order ODE solver to the equa
 
 
 I was heavily inspired by https://www.youtube.com/watch?v=hKHl68Fdpq4&ab_channel=ParallelComputingandScientificMachineLearning which presents a great demonstration of the theory behind PINNs!
+
+
+## References
+<a id="1">[1]</a> 
+Maziar Raissi and Paris Perdikaris and George Em Karniadakis (2017). 
+Physics Informed Deep Learning (Part II): Data-driven Discovery of Nonlinear Partial Differential Equations
